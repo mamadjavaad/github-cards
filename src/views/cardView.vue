@@ -42,6 +42,11 @@ onMounted(() => {
           <span>{{ userData && (userData.following !== null && userData.following !== undefined) ?
             userData.following : 'N/A' }} Following</span>
         </div>
+        <div class="d-flex flex-wrap justify-center mb-4 w-100 follow-data">
+          <v-icon icon="mdi-source-repository" class="mr-2"></v-icon>
+          <span>{{ userData && (userData.public_repos !== null && userData.public_repos !== undefined) ?
+            userData.public_repos : 'N/A' }} Public repos</span>
+        </div>
         <a :href="userData && userData.html_url ? userData.html_url : null" target="_blank">
           <v-btn prepend-icon="mdi-github" variant="" class="mb-4 page-btn">
             Github Page
@@ -58,9 +63,17 @@ onMounted(() => {
           <span class="text-center details mb-2">
             <v-icon icon="mdi-account"></v-icon>
             Fullname : {{ userData && userData.name ? userData.name : 'N/A' }}</span>
-          <span class="text-center details mb-2" v-if="userData.location">
+        <span   v-if="userData.email" class="text-center details mb-2">
+          <v-icon icon="mdi-email" class="mr-2"></v-icon>
+email : {{ userData && userData.email ? userData.email : 'N/A' }}
+
+        </span>
+            <span class="text-center details mb-2" v-if="userData.location">
             <v-icon icon="mdi-pin" class="mr-2"></v-icon>
             location : {{ userData && userData.location ? userData.location : 'N/A' }}</span>
+            <span  class="text-center details mb-2" v-if="userData.blog">
+            <v-icon icon="mdi-post"></v-icon>
+              blog : <a class="text-grey" target="_blank" :href="userData && userData.blog ?userData.blog :'' ">link</a></span>
         </div>
 
 
