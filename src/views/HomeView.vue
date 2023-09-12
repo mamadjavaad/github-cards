@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 let searchModel = ref(null)
 let searchSubmit = () => {
-  router.push('/' + searchModel.value)
+  router.push('/' + searchModel.value.split(" ").join(''))
 }
 
 </script>
