@@ -82,7 +82,7 @@ onMounted(() => {
           <span class="text-center details mb-2">
             <v-icon icon="mdi-id-card " class="mr-2"></v-icon>
             id : {{ userData && userData.id ? userData.id : 'N/A' }}</span>
-          <span class="text-center details mb-2">
+          <span class="text-center details mb-2" v-if="userData.name">
             <v-icon icon="mdi-account"></v-icon>
             Fullname : {{ userData && userData.name ? userData.name : 'N/A' }}</span>
           <span v-if="userData.email" class="text-center details mb-2">
@@ -98,7 +98,7 @@ onMounted(() => {
               :href="userData && userData.blog ? userData.blog : ''">link</a></span>
         </div>
       </div>
-      <div class="public-repos d-flex flex-column " v-if="repoData">
+      <div class="public-repos d-flex flex-column " v-if="repoData.length>0">
         <h3>Public repos</h3>
         <div class=" w-100 d-flex flex-wrap justify-space-between repos-container">
           <div class="repo mt-3 pa-2 d-flex flex-column" v-for="repo in repoData" :key="repo">
@@ -110,8 +110,18 @@ onMounted(() => {
               <span class="subtext pa-2" v-if="repo.language">{{ repo.language }}</span>
             </div>
           </div>
-
         </div>
+      </div>
+      <div  v-if="!(repoData.length>0)" class="d-flex justify-center align-center public-repos">
+      <div class="text-center">
+        <v-img title="github octocat🐙😺"
+          src="src/assets/img/norepos.png"
+          aspect-ratio="1"
+          class="mx-auto"
+        ></v-img>
+        <h2 class="title mt-3">No Repos found </h2>
+        <p>Please check back later.</p>
+      </div>
 
       </div>
     </div>
