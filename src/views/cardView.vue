@@ -172,10 +172,10 @@ onMounted(() => {
   backdrop-filter: blur(20px);
   color: white;
   .page-btn {
-        border: 1px solid $boxborderColor;
-        color: white !important;
-        background: rgba(185, 186, 187, 0.1019607843);
-      }
+    border: 1px solid $boxborderColor;
+    color: white !important;
+    background: rgba(185, 186, 187, 0.1019607843);
+  }
 }
 
 .github-box {
@@ -260,6 +260,7 @@ onMounted(() => {
   .github-box {
     max-width: 920px;
     min-width: 620px;
+    backdrop-filter: blur(80px) !important;
   }
 }
 
@@ -267,7 +268,6 @@ onMounted(() => {
   .github-box {
     flex-direction: column !important;
     background: none;
-    backdrop-filter: blur(0px) !important;
     border: 0;
   }
 
