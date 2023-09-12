@@ -15,6 +15,7 @@ const app = getCurrentInstance()
 const axios = app.appContext.config.globalProperties.$http
 //getting user data
 const userData = ref(null)
+const errorData = ref(false)
 const getUser = async () => {
   await axios.get('users/' + username.value)
     .then((response) => {
@@ -22,7 +23,7 @@ const getUser = async () => {
     })
     .catch((error) => {
       console.log(error.message)
-      alert('error')
+      errorData.value = true
     })
 }
 //getting repos data
@@ -45,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-main class="d-flex align-center justify-center flex-column">
+  <v-main class="d-flex align-center justify-center flex-column" :class="errorData ? 'error-container' : ''">
 
     <div class="github-box d-flex " v-if="userData && repoData">
       <div class="sidebar d-flex flex-column pa-3 align-center ">
@@ -70,7 +71,7 @@ onMounted(() => {
             userData.public_repos : 'N/A' }} Public repos</span>
         </div>
         <a :href="userData && userData.html_url ? userData.html_url : null" target="_blank">
-          <v-btn prepend-icon="mdi-github" variant="" class="mb-4 page-btn">
+          <v-btn prepend-icon="mdi-github" variant="elevated" class="mb-4 page-btn">
             Github Page
           </v-btn>
         </a>
@@ -98,7 +99,7 @@ onMounted(() => {
               :href="userData && userData.blog ? userData.blog : ''">link</a></span>
         </div>
       </div>
-      <div class="public-repos d-flex flex-column " v-if="repoData.length>0">
+      <div class="public-repos d-flex flex-column " v-if="repoData.length > 0">
         <h3>Public repos</h3>
         <div class=" w-100 d-flex flex-wrap justify-space-between repos-container">
           <div class="repo mt-3 pa-2 d-flex flex-column" v-for="repo in repoData" :key="repo">
@@ -112,25 +113,35 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div  v-if="!(repoData.length>0)" class="d-flex justify-center align-center public-repos">
-      <div class="text-center">
-        <v-img title="github octocat🐙😺"
-          src="src/assets/img/norepos.png"
-          aspect-ratio="1"
-          class="mx-auto"
-        ></v-img>
-        <h2 class="title mt-3">No Repos found </h2>
-        <p>Please check back later.</p>
-      </div>
+      <div v-if="!(repoData.length > 0)" class="d-flex justify-center align-center public-repos">
+        <div class="text-center">
+          <v-img title="github octocat🐙😺" src="src/assets/img/norepos.png" aspect-ratio="1" class="mx-auto"></v-img>
+          <h2 class="title mt-3">No Repos found </h2>
+          <p>Please check back later.</p>
+        </div>
 
       </div>
     </div>
 
-    <div v-if="!userData || !repoData">
+    <div v-if="(!userData || !repoData) && errorData === false">
       <div class="loading d-flex justify-center align-center">
         <v-progress-circular indeterminate color="white" :size="50"></v-progress-circular>
       </div>
     </div>
+
+    <div class="error-box px-3 d-flex justify-center align-center" v-if="errorData">
+      <div class="text-center">
+        <v-img title="github octocat🐙😺" src="src/assets/img/notfound.png" aspect-ratio="2" class="mx-auto"></v-img>
+        <h2 class="title mt-3 ">User doesn’t exist. </h2>
+        <p>This Username doesn’t exist in Github</p>
+        <router-link to="/">
+          <v-btn prepend-icon="mdi-github" variant="elevated" class="mt-3 page-btn">
+            Retun to search
+          </v-btn>
+        </router-link>
+      </div>
+    </div>
+
   </v-main>
 </template>
 
@@ -139,12 +150,32 @@ onMounted(() => {
   min-height: 100vh;
 }
 
+.error-container {
+  backdrop-filter: blur(20px);
+}
+
 .loading {
   background: #9d9d9d52;
   border-radius: 11px;
   backdrop-filter: blur(12px);
   width: 100px;
   height: 100px;
+}
+
+.error-box {
+  border: 1px solid $boxborderColor;
+  height: 365px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: $boxbackgroundColor;
+  backdrop-filter: blur(20px);
+  color: white;
+  .page-btn {
+        border: 1px solid $boxborderColor;
+        color: white !important;
+        background: rgba(185, 186, 187, 0.1019607843);
+      }
 }
 
 .github-box {
@@ -180,6 +211,7 @@ onMounted(() => {
     a {
       .page-btn {
         border: 1px solid $boxborderColor;
+        color: white !important;
         background: rgba(185, 186, 187, 0.1019607843);
       }
     }
@@ -235,6 +267,7 @@ onMounted(() => {
   .github-box {
     flex-direction: column !important;
     background: none;
+    backdrop-filter: blur(0px) !important;
     border: 0;
   }
 
@@ -250,4 +283,5 @@ onMounted(() => {
   .repo {
     width: 100% !important;
   }
-}</style>
+}
+</style>
