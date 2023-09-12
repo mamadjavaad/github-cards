@@ -1,11 +1,39 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { ref } from 'vue'
+
+// getting time and update it each seconds
+const nTime = ref(new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds())
+setInterval(() => {
+  nTime.value = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+}, 1000);
+
 </script>
 
 <template>
-  <RouterView />
+    <v-layout>
+    <v-system-bar color="#010409" class="d-flex align-center justify-space-between" window>
+      <span class="ms-2">{{ nTime }}</span>
+
+      <span>Github Cards</span>
+      <v-hover>
+        <a title="My github page 🚀" href="https://github.com/mamadjavaad" target=“_blank” class="d-flex">
+          <span class="ms-2">github/mamadjavaad</span>
+
+          <v-icon class="ms-2 " icon="mdi-github"></v-icon>
+        </a>
+      </v-hover>
+
+    </v-system-bar>
+    
+    <routerView />
+    
+  </v-layout>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.v-layout {
+  background: url("./assets/img/github-bg.webp");
+}
 
 </style>
