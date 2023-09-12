@@ -35,7 +35,7 @@ onMounted(() => {
         <img :src="userData && userData.avatar_url ? userData.avatar_url : null" alt="profile photo" class="mb-4">
         <span class="mb-0">{{ username }}</span>
         <span class="mb-3 acc-type">{{ userData && userData.type ? userData.type : null }}</span>
-        <div class="d-flex flex-wrap justify-lg-space-evenly mb-4 w-100 follow-data">
+        <div class="d-flex flex-wrap justify-space-evenly mb-4 w-100 follow-data">
           <v-icon icon="mdi-account-multiple "></v-icon>
           <span>{{ userData && (userData.followers !== null && userData.followers !== undefined) ?
             userData.followers : 'N/A' }} Followers</span>
@@ -43,13 +43,27 @@ onMounted(() => {
             userData.following : 'N/A' }} Following</span>
         </div>
         <a :href="userData && userData.html_url ? userData.html_url : null" target="_blank">
-          <v-btn prepend-icon="mdi-github" variant="" class="mb-4">
+          <v-btn prepend-icon="mdi-github" variant="" class="mb-4 page-btn">
             Github Page
           </v-btn>
         </a>
         <span class="mb-4 text-center bio" v-if="userData && userData.bio">
           {{ userData && userData.bio ? userData.bio : null }}
         </span>
+
+        <div class="w-100 pa-2 mt-auto  d-flex flex-column flex-wrap user-details">
+          <span class="text-center details mb-2">
+            <v-icon icon="mdi-id-card " class="mr-2"></v-icon>
+            id : {{ userData && userData.id ? userData.id : 'N/A' }}</span>
+          <span class="text-center details mb-2">
+            <v-icon icon="mdi-account"></v-icon>
+            Fullname : {{ userData && userData.name ? userData.name : 'N/A' }}</span>
+          <span class="text-center details mb-2" v-if="userData.location">
+            <v-icon icon="mdi-pin" class="mr-2"></v-icon>
+            location : {{ userData && userData.location ? userData.location : 'N/A' }}</span>
+        </div>
+
+
       </div>
     </div>
 
@@ -77,7 +91,6 @@ onMounted(() => {
 .github-box {
   border: 1px solid $boxborderColor;
   width: 42%;
-  min-height: 550px;
   border-radius: 5px;
   background-color: $boxbackgroundColor;
   backdrop-filter: blur(20px);
@@ -105,13 +118,21 @@ onMounted(() => {
       font-size: 13.3px;
     }
 
-    .v-btn {
-      border: 1px solid $boxborderColor;
-      background: rgba(185, 186, 187, 0.1019607843);
+    a {
+      .page-btn {
+        border: 1px solid $boxborderColor;
+        background: rgba(185, 186, 187, 0.1019607843);
+      }
     }
 
-    .bio {
+
+    .bio,
+    .details {
       font-size: 14px;
+    }
+
+    .user-details {
+      border-top: 1px solid rgba(185, 186, 187, 0.1019607843);
     }
   }
 
