@@ -12,9 +12,9 @@ setInterval(() => {
 <template>
     <v-layout>
     <v-system-bar color="#010409" class="d-flex align-center justify-space-between" window>
-      <span class="ms-2">{{ nTime }}</span>
+      <span class="ms-2" title="its just time ⌚ ">{{ nTime }}</span>
 
-      <span>Github Cards</span>
+      <router-link to="/" title="Home Page 🏡">Github Cards</router-link>
       <v-hover>
         <a title="My github page 🚀" href="https://github.com/mamadjavaad" target=“_blank” class="d-flex">
           <span class="ms-2">github/mamadjavaad</span>
