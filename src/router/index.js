@@ -10,14 +10,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/card',
-      name: 'card',
+      path: '/:username',
+      name: 'userCard',
       component: () => import('../views/cardView.vue')
-    }
-    ,{
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
     }
   ]
 })
