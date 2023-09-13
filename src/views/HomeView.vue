@@ -5,9 +5,21 @@ import { useRouter } from 'vue-router'
 //using router to push client to the search he did
 const router = useRouter()
 let searchModel = ref(null)
+let snackbarError = ref(false)
 let searchSubmit = () => {
-  router.push('/' + searchModel.value.split(" ").join(''))
+  let validRegex = /^(?=.*[a-zA-Z0-9-])[a-zA-Z0-9\s-]{1,39}$/i
+  if (!(validRegex.test(searchModel.value))) {
+    snackbarError.value = true
+  } else {
+    if (searchModel.value.includes(' ')) {
+      router.push('/' + searchModel.value.split(" ").join(''))
+    } else {
+      router.push('/' + searchModel.value)
+    }
+
+  }
 }
+
 
 </script>
 
@@ -25,7 +37,11 @@ let searchSubmit = () => {
 
       </v-responsive>
     </v-card>
-
+    <v-snackbar :timeout="2000" color="#dc3545" location="bottom left" v-model="snackbarError"
+      @click="snackbarError = false" :absolute="true" class="ma-6">
+      <v-icon icon="mdi-alert-octagon"></v-icon>
+      This type of username is invalid!
+    </v-snackbar>
   </v-main>
 </template>
 
@@ -47,6 +63,11 @@ let searchSubmit = () => {
 
 .v-field {
   color: #a0a0a0 !important;
+}
+
+.v-snackbar {
+  cursor: pointer;
+  color: white !important;
 }
 
 .search-img {
