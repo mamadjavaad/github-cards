@@ -13,6 +13,10 @@ const router = createRouter({
       path: '/:username',
       name: 'userCard',
       component: () => import('../views/cardView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ]
 })
