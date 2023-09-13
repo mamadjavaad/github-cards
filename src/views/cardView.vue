@@ -2,6 +2,8 @@
 //imports
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import norepos from '@/assets/norepos.png'
+import notfound from '@/assets/notfound.png'
 // avatar loading data
 const avatarLoad = ref(false)
 const imageToggle = () => {
@@ -115,7 +117,7 @@ onMounted(() => {
       </div>
       <div v-if="!(repoData.length > 0)" class="d-flex justify-center align-center public-repos">
         <div class="text-center">
-          <v-img title="github octocat🐙😺" src="src/assets/img/norepos.png" aspect-ratio="1" class="mx-auto"></v-img>
+          <v-img title="github octocat🐙😺" :src="norepos" aspect-ratio="1" class="mx-auto"></v-img>
           <h2 class="title mt-3">No Repos found </h2>
           <p>Please check back later.</p>
         </div>
@@ -131,7 +133,7 @@ onMounted(() => {
 
     <div class="error-box px-3 d-flex justify-center align-center" v-if="errorData">
       <div class="text-center">
-        <v-img title="github octocat🐙😺" src="src/assets/img/notfound.png" aspect-ratio="2" class="mx-auto"></v-img>
+        <v-img title="github octocat🐙😺" :src="notfound" aspect-ratio="2" class="mx-auto"></v-img>
         <h2 class="title mt-3 ">User doesn’t exist. </h2>
         <p>This Username doesn’t exist in Github</p>
         <router-link to="/">

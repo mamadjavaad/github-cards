@@ -2,6 +2,7 @@
 //imports
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import githubSearch from '@/assets/githubSearch.png'
 //using router to push client to the search he did
 const router = useRouter()
 let searchModel = ref(null)
@@ -28,7 +29,7 @@ let searchSubmit = () => {
     <v-card class="pa-8 d-flex justify-center flex-wrap">
       <v-responsive max-width="550">
         <v-img class="mx-auto mb-11 p-2 search-img" max-height="140" max-width="300"
-          src="src/assets/img/githubSearch.png"></v-img>
+          :src="githubSearch"></v-img>
         <div class="search-box">
           <v-text-field density="compact" variant="solo" theme="light" bg-color="#9d9d9d52" label="Search github cards"
             append-inner-icon="mdi-github" single-line hide-details v-model="searchModel" @keydown.enter="searchSubmit"

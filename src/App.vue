@@ -33,7 +33,7 @@ setInterval(() => {
 <style lang="scss" scoped>
 
 .v-layout {
-  background: url("./assets/img/github-bg.webp");
+  background: url("./assets/github-bg.webp");
 }
 
 </style>
