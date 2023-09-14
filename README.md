@@ -4,9 +4,9 @@ GitHub Cards is a tool built with Vue.js that uses the GitHub API to fetch and d
 
 ## Features
 
-- Fetches real-time data from GitHub using the GitHub API
-- Displays user profiles in an easy-to-understand card format
-- Provides detailed information about users and their repositories
+- Fetches real-time data from GitHub using the GitHub API ⌚
+- Displays user profiles in an easy-to-understand card format 🪪
+- Provides detailed information about users and their repositories 🌌
 
 ## Technologies Used
 
@@ -45,5 +45,7 @@ Contributions are what make the open-source community such an amazing place to l
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Credit
 
+This project was created by Mohammad Javad Fakhraeei. Special thanks to the Vue.js, Vuetify, and GitHub API for their valuable resources and documentation ♥️ .
 
