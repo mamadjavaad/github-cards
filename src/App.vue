@@ -15,13 +15,11 @@ setInterval(() => {
       <span class="ms-2" title="its just time ⌚ ">{{ nTime }}</span>
 
       <router-link to="/" title="Home Page 🏡">Github Cards</router-link>
-      <v-hover>
         <a title="My github page 🚀" href="https://github.com/mamadjavaad" target=“_blank” class="d-flex">
           <span class="ms-2">github/mamadjavaad</span>
 
-          <v-icon class="ms-2 " icon="mdi-github"></v-icon>
+          <v-icon class="ms-2 " icon="$mdiGithub" />
         </a>
-      </v-hover>
 
     </v-system-bar>
     

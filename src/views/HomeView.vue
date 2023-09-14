@@ -32,7 +32,7 @@ let searchSubmit = () => {
           :src="githubSearch"></v-img>
         <div class="search-box">
           <v-text-field density="compact" variant="solo" theme="light" bg-color="#9d9d9d52" label="Search github cards"
-            append-inner-icon="mdi-github" single-line hide-details v-model="searchModel" @keydown.enter="searchSubmit"
+            append-inner-icon="$mdiGithub" single-line hide-details v-model="searchModel" @keydown.enter="searchSubmit"
             @click:append-inner="searchSubmit"></v-text-field>
         </div>
 

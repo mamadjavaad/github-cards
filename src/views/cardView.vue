@@ -4,6 +4,14 @@ import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import norepos from '@/assets/norepos.png'
 import notfound from '@/assets/notfound.png'
+import { mdiAccountMultiple } from '@mdi/js'
+import { mdiSourceRepository } from '@mdi/js'
+import { mdiIdCard } from '@mdi/js'
+import { mdiAccount } from '@mdi/js'
+import { mdiEmail } from '@mdi/js'
+import { mdiPin } from '@mdi/js'
+import { mdiPost } from '@mdi/js'
+import { mdiCheckboxBlankBadgeOutline } from '@mdi/js'
 // avatar loading data
 const avatarLoad = ref(false)
 const imageToggle = () => {
@@ -61,19 +69,19 @@ onMounted(() => {
         <span class="mb-0">{{ username }}</span>
         <span class="mb-3 acc-type">{{ userData && userData.type ? userData.type : null }}</span>
         <div class="d-flex flex-wrap justify-space-evenly mb-4 w-100 follow-data">
-          <v-icon icon="mdi-account-multiple "></v-icon>
+          <v-icon :icon="mdiAccountMultiple"></v-icon>
           <span>{{ userData && (userData.followers !== null && userData.followers !== undefined) ?
             userData.followers : 'N/A' }} Followers</span>
           <span>{{ userData && (userData.following !== null && userData.following !== undefined) ?
             userData.following : 'N/A' }} Following</span>
         </div>
         <div class="d-flex flex-wrap justify-center mb-4 w-100 follow-data">
-          <v-icon icon="mdi-source-repository" class="mr-2"></v-icon>
+          <v-icon :icon="mdiSourceRepository" class="mr-2"></v-icon>
           <span>{{ userData && (userData.public_repos !== null && userData.public_repos !== undefined) ?
             userData.public_repos : 'N/A' }} Public repos</span>
         </div>
         <a :href="userData && userData.html_url ? userData.html_url : null" target="_blank">
-          <v-btn prepend-icon="mdi-github" variant="elevated" class="mb-4 page-btn">
+          <v-btn prepend-icon="$mdiGithub" variant="elevated" class="mb-4 page-btn">
             Github Page
           </v-btn>
         </a>
@@ -83,20 +91,20 @@ onMounted(() => {
 
         <div class="w-100 pa-2 mt-auto  d-flex flex-column flex-wrap user-details">
           <span class="text-center details mb-2">
-            <v-icon icon="mdi-id-card " class="mr-2"></v-icon>
+            <v-icon :icon="mdiIdCard" class="mr-2"></v-icon>
             id : {{ userData && userData.id ? userData.id : 'N/A' }}</span>
           <span class="text-center details mb-2" v-if="userData.name">
-            <v-icon icon="mdi-account"></v-icon>
+            <v-icon :icon="mdiAccount"></v-icon>
             Fullname : {{ userData && userData.name ? userData.name : 'N/A' }}</span>
           <span v-if="userData.email" class="text-center details mb-2">
-            <v-icon icon="mdi-email" class="mr-2"></v-icon>
+            <v-icon :icon="mdiEmail" class="mr-2"></v-icon>
             email : {{ userData && userData.email ? userData.email : 'N/A' }}
           </span>
           <span class="text-center details mb-2" v-if="userData.location">
-            <v-icon icon="mdi-pin" class="mr-2"></v-icon>
+            <v-icon :icon="mdiPin" class="mr-2"></v-icon>
             location : {{ userData && userData.location ? userData.location : 'N/A' }}</span>
           <span class="text-center details mb-2" v-if="userData.blog">
-            <v-icon icon="mdi-post"></v-icon>
+            <v-icon :icon="mdiPost"></v-icon>
             blog : <a class="text-grey" target="_blank"
               :href="userData && userData.blog ? userData.blog : ''">link</a></span>
         </div>
@@ -109,7 +117,7 @@ onMounted(() => {
             <span class="mb-1 subtext" v-if="repo.fork">Forked</span>
             <span class="mb-1 subtext">{{ repo.description }}</span>
             <div class="w-100" v-if="repo.language">
-              <v-icon class=" subtext text-black" icon="mdi-checkbox-blank-badge-outline"></v-icon>
+              <v-icon class=" subtext text-black" :icon="mdiCheckboxBlankBadgeOutline"></v-icon>
               <span class="subtext pa-2" v-if="repo.language">{{ repo.language }}</span>
             </div>
           </div>
@@ -124,7 +132,6 @@ onMounted(() => {
 
       </div>
     </div>
-
     <div v-if="(!userData || !repoData) && errorData === false">
       <div class="loading d-flex justify-center align-center">
         <v-progress-circular indeterminate color="white" :size="50"></v-progress-circular>
@@ -137,7 +144,7 @@ onMounted(() => {
         <h2 class="title mt-3 ">User doesn’t exist. </h2>
         <p>This Username doesn’t exist in Github</p>
         <router-link to="/">
-          <v-btn prepend-icon="mdi-github" variant="elevated" class="mt-3 page-btn">
+          <v-btn prepend-icon="$mdiGithub" variant="elevated" class="mt-3 page-btn">
             Retun to search
           </v-btn>
         </router-link>
@@ -173,6 +180,7 @@ onMounted(() => {
   background-color: $boxbackgroundColor;
   backdrop-filter: blur(20px);
   color: white;
+
   .page-btn {
     border: 1px solid $boxborderColor;
     color: white !important;
