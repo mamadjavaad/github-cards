@@ -2,7 +2,8 @@
 //imports
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import githubSearch from '@/assets/githubSearch.png'
+import githubSearch from '@/assets/githubSearch.webp'
+import { mdiAlertOctagon } from '@mdi/js'
 //using router to push client to the search he did
 const router = useRouter()
 let searchModel = ref(null)
@@ -40,7 +41,7 @@ let searchSubmit = () => {
     </v-card>
     <v-snackbar :timeout="2000" color="#dc3545" location="bottom left" v-model="snackbarError"
       @click="snackbarError = false" :absolute="true" class="ma-6">
-      <v-icon icon="mdi-alert-octagon"></v-icon>
+      <v-icon :icon="mdiAlertOctagon"></v-icon>
       This type of username is invalid!
     </v-snackbar>
   </v-main>

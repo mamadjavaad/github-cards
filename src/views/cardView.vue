@@ -2,8 +2,8 @@
 //imports
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import norepos from '@/assets/norepos.png'
-import notfound from '@/assets/notfound.png'
+import norepos from '@/assets/norepos.webp'
+import notfound from '@/assets/notfound.webp'
 import { mdiAccountMultiple } from '@mdi/js'
 import { mdiSourceRepository } from '@mdi/js'
 import { mdiIdCard } from '@mdi/js'
