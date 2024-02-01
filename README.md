@@ -47,5 +47,5 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## Credit
 
-This project was created by Mohammad Javad Fakhraeei. Special thanks to the Vue.js, Vuetify, and GitHub API for their valuable resources and documentation. ♥️ 
+Special thanks to the Vue.js, Vuetify, and GitHub API for their valuable resources and documentation. 
 
